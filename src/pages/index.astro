@@ -1,27 +1,29 @@
 ---
 // This will be enhanced with proper layout and components in upcoming steps
 import '../styles/globals.css';
+import Layout from '@/layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Developer Portfolio - Coming Soon</title>
-		<meta name="description" content="Developer portfolio and blog - launching soon" />
-	</head>
-	<body>
-		<main class="min-h-screen flex items-center justify-center bg-background">
-			<div class="text-center">
-				<h1 class="text-4xl font-bold text-foreground mb-4">
-					Portfolio Coming Soon
-				</h1>
-				<p class="text-lg text-muted-foreground">
-					Building something amazing with Astro, React, and Tailwind CSS
-				</p>
+<Layout 
+	title="Developer Portfolio - Coming Soon" 
+	description="Developer portfolio and blog - launching soon"
+>
+	<div class="min-h-screen flex items-center justify-center">
+		<div class="text-center px-4">
+			<h1 class="text-4xl font-bold text-foreground mb-4">
+				Portfolio Coming Soon
+			</h1>
+			<p class="text-lg text-muted-foreground max-w-md mx-auto">
+				Building something amazing with Astro, React, and Tailwind CSS
+			</p>
+			<div class="mt-8">
+				<a 
+					href="/about/test-components" 
+					class="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+				>
+					View Components Test
+				</a>
 			</div>
-		</main>
-	</body>
-</html>
+		</div>
+	</div>
+</Layout>

@@ -1,96 +1,86 @@
 ---
-import '../styles/globals.css';
+import Layout from '@/layouts/Layout.astro';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Component Test - Portfolio</title>
-	</head>
-	<body>
-		<main class="min-h-screen bg-background p-8">
-			<div class="container mx-auto max-w-4xl">
-				<h1 class="text-4xl font-bold text-foreground mb-8">Component Test Page</h1>
-				
-				<!-- Button Tests -->
-				<section class="mb-8">
-					<h2 class="text-2xl font-semibold mb-4">Buttons</h2>
-					<div class="flex gap-4 flex-wrap">
-						<Button>Default Button</Button>
-						<Button variant="secondary">Secondary</Button>
-						<Button variant="destructive">Destructive</Button>
-						<Button variant="outline">Outline</Button>
-						<Button variant="ghost">Ghost</Button>
-						<Button variant="link">Link</Button>
-					</div>
-				</section>
-
-				<!-- Card Tests -->
-				<section class="mb-8">
-					<h2 class="text-2xl font-semibold mb-4">Cards</h2>
-					<div class="grid gap-4 md:grid-cols-2">
-						<Card>
-							<CardHeader>
-								<CardTitle>Card Title</CardTitle>
-								<CardDescription>Card description goes here</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<p>This is the card content area.</p>
-							</CardContent>
-						</Card>
-						<Card>
-							<CardHeader>
-								<CardTitle>Another Card</CardTitle>
-								<CardDescription>With different content</CardDescription>
-							</CardHeader>
-							<CardContent>
-								<p>More content in this card.</p>
-							</CardContent>
-						</Card>
-					</div>
-				</section>
-
-				<!-- Badge Tests -->
-				<section class="mb-8">
-					<h2 class="text-2xl font-semibold mb-4">Badges</h2>
-					<div class="flex gap-2 flex-wrap">
-						<Badge>Default</Badge>
-						<Badge variant="secondary">Secondary</Badge>
-						<Badge variant="destructive">Destructive</Badge>
-						<Badge variant="outline">Outline</Badge>
-					</div>
-				</section>
-
-				<!-- Theme Test -->
-				<section class="mb-8">
-					<h2 class="text-2xl font-semibold mb-4">Theme Colors</h2>
-					<div class="grid gap-4 md:grid-cols-3">
-						<div class="p-4 bg-background border border-border rounded-lg">
-							<h3 class="font-semibold text-foreground">Background</h3>
-							<p class="text-muted-foreground">Muted foreground text</p>
-						</div>
-						<div class="p-4 bg-card border border-border rounded-lg">
-							<h3 class="font-semibold text-card-foreground">Card</h3>
-							<p class="text-muted-foreground">Card content</p>
-						</div>
-						<div class="p-4 bg-primary text-primary-foreground rounded-lg">
-							<h3 class="font-semibold">Primary</h3>
-							<p>Primary background</p>
-						</div>
-					</div>
-				</section>
-
-				<p class="text-sm text-muted-foreground">
-					This is a test page to verify shadcn/ui components work correctly.
-					<a href="/about" class="text-primary hover:underline">Back to home</a>
-				</p>
+<Layout title="Component Test - Portfolio">
+	<div class="container mx-auto max-w-4xl px-4 py-8">
+		<h1 class="text-4xl font-bold text-foreground mb-8">Component Test Page</h1>
+		
+		<!-- Button Tests -->
+		<section class="mb-8">
+			<h2 class="text-2xl font-semibold mb-4">Buttons</h2>
+			<div class="flex gap-4 flex-wrap">
+				<Button>Default Button</Button>
+				<Button variant="secondary">Secondary</Button>
+				<Button variant="destructive">Destructive</Button>
+				<Button variant="outline">Outline</Button>
+				<Button variant="ghost">Ghost</Button>
+				<Button variant="link">Link</Button>
 			</div>
-		</main>
-	</body>
-</html> 
+		</section>
+
+		<!-- Card Tests -->
+		<section class="mb-8">
+			<h2 class="text-2xl font-semibold mb-4">Cards</h2>
+			<div class="grid gap-4 md:grid-cols-2">
+				<Card>
+					<CardHeader>
+						<CardTitle>Card Title</CardTitle>
+						<CardDescription>Card description goes here</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<p>This is the card content area.</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardHeader>
+						<CardTitle>Another Card</CardTitle>
+						<CardDescription>With different content</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<p>More content in this card.</p>
+					</CardContent>
+				</Card>
+			</div>
+		</section>
+
+		<!-- Badge Tests -->
+		<section class="mb-8">
+			<h2 class="text-2xl font-semibold mb-4">Badges</h2>
+			<div class="flex gap-2 flex-wrap">
+				<Badge>Default</Badge>
+				<Badge variant="secondary">Secondary</Badge>
+				<Badge variant="destructive">Destructive</Badge>
+				<Badge variant="outline">Outline</Badge>
+			</div>
+		</section>
+
+		<!-- Theme Test -->
+		<section class="mb-8">
+			<h2 class="text-2xl font-semibold mb-4">Theme Colors</h2>
+			<div class="grid gap-4 md:grid-cols-3">
+				<div class="p-4 bg-background border border-border rounded-lg">
+					<h3 class="font-semibold text-foreground">Background</h3>
+					<p class="text-muted-foreground">Muted foreground text</p>
+				</div>
+				<div class="p-4 bg-card border border-border rounded-lg">
+					<h3 class="font-semibold text-card-foreground">Card</h3>
+					<p class="text-muted-foreground">Card content</p>
+				</div>
+				<div class="p-4 bg-primary text-primary-foreground rounded-lg">
+					<h3 class="font-semibold">Primary</h3>
+					<p>Primary background</p>
+				</div>
+			</div>
+		</section>
+
+		<p class="text-sm text-muted-foreground">
+			This is a test page to verify shadcn/ui components work correctly.
+			Use the theme toggle in the header to test dark/light mode.
+			<a href="/about" class="text-primary hover:underline ml-2">Back to home</a>
+		</p>
+	</div>
+</Layout> 
