@@ -1,0 +1,40 @@
+{
+  "name": "Developer Portfolio & Blog",
+  "short_name": "Portfolio",
+  "description": "Full-stack developer portfolio and blog featuring modern web technologies",
+  "start_url": "/about/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/about/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/about/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "developer",
+    "portfolio"
+  ],
+  "shortcuts": [
+    {
+      "name": "Blog",
+      "short_name": "Blog",
+      "description": "View latest blog posts",
+      "url": "/about/blog/",
+      "icons": [
+        {
+          "src": "/about/favicon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+} 

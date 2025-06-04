@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourusername.github.io/about/sitemap-index.xml
+
+# Disallow any admin or build directories if they exist
+Disallow: /admin/
+Disallow: /.well-known/
+Disallow: /dist/
+
+# Allow all other content
+Allow: /blog/
+Allow: /assets/ 

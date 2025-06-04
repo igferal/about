@@ -1,0 +1,66 @@
+---
+// Skills and Technologies section
+import { Badge } from '../ui/badge';
+
+// Skills data organized by category
+const skillCategories = [
+  {
+    name: "Languages",
+    skills: ["JavaScript", "TypeScript", "Python", "HTML5", "CSS3", "SQL", "Bash"]
+  },
+  {
+    name: "Frameworks & Libraries",
+    skills: ["React", "Astro", "Next.js", "Vue.js", "Node.js", "Express", "Tailwind CSS", "React Query"]
+  },
+  {
+    name: "Tools & Platforms",
+    skills: ["Git", "GitHub", "VS Code", "Figma", "Postman", "Chrome DevTools", "npm/yarn"]
+  },
+  {
+    name: "Cloud & DevOps",
+    skills: ["AWS", "Vercel", "Netlify", "GitHub Actions", "Docker", "Firebase"]
+  }
+];
+---
+
+<section id="skills" class="py-16 bg-gray-50 dark:bg-gray-800">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+        Skills & Technologies
+      </h2>
+      
+      <p class="text-lg text-gray-600 dark:text-gray-300 mb-12 text-center max-w-2xl mx-auto">
+        A comprehensive toolkit built through continuous learning and hands-on experience in modern web development.
+      </p>
+
+      <div class="grid gap-8 md:gap-12">
+        {skillCategories.map((category) => (
+          <div class="space-y-4">
+            <h3 class="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-4 text-center md:text-left">
+              {category.name}
+            </h3>
+            
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+              {category.skills.map((skill) => (
+                <Badge
+                  variant="secondary"
+                  className="px-4 py-2 text-sm font-medium hover:bg-blue-100 hover:text-blue-700 dark:hover:bg-blue-900 dark:hover:text-blue-300 transition-colors cursor-default"
+                >
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Additional note -->
+      <div class="mt-12 text-center">
+        <p class="text-gray-600 dark:text-gray-400 text-sm">
+          Always exploring new technologies and staying current with industry trends.
+        </p>
+      </div>
+    </div>
+  </div>
+</section> 

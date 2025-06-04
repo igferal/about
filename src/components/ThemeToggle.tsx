@@ -34,8 +34,13 @@ export function ThemeToggle() {
   // Don't render anything until mounted to avoid hydration mismatch
   if (!mounted) {
     return (
-      <Button variant="ghost" size="sm" className="w-9 h-9 p-0">
-        <span className="sr-only">Loading theme toggle</span>
+      <Button 
+        variant="ghost" 
+        size="sm" 
+        className="w-9 h-9 p-0"
+        disabled
+        aria-label="Loading theme toggle"
+      >
         <div className="w-4 h-4 rounded-full bg-muted animate-pulse" />
       </Button>
     );
@@ -46,10 +51,11 @@ export function ThemeToggle() {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="w-9 h-9 p-0"
-      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      className="w-9 h-9 p-0 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      aria-pressed={theme === 'dark'}
+      title={`Currently in ${theme} mode. Click to switch to ${theme === 'light' ? 'dark' : 'light'} mode.`}
     >
-      <span className="sr-only">Toggle theme</span>
       {theme === 'light' ? (
         // Moon icon for dark mode
         <svg
@@ -58,6 +64,7 @@ export function ThemeToggle() {
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -74,6 +81,7 @@ export function ThemeToggle() {
           stroke="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"

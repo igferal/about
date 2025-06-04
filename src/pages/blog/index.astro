@@ -1,0 +1,228 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllPosts } from '../../lib/content';
+
+const posts = await getAllPosts();
+---
+
+<Layout 
+  title="Blog" 
+  description="Thoughts on web development, technology, and software engineering. Explore articles about modern web technologies, best practices, and developer insights."
+>
+  <main class="container mx-auto px-4 py-8 min-h-screen">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header Section -->
+      <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          Blog
+        </h1>
+        
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6">
+          Thoughts on web development, technology, and software engineering. 
+          Explore articles about modern web technologies, best practices, and developer insights.
+        </p>
+        
+        <!-- RSS Feed Link -->
+        <div class="flex justify-center">
+          <a 
+            href="/rss.xml" 
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-900/30 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            aria-label="Subscribe to RSS feed"
+          >
+            <svg 
+              class="w-4 h-4 mr-2" 
+              fill="currentColor" 
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248S0 22.546 0 20.752s1.456-3.248 3.252-3.248c1.795 0 3.251 1.454 3.251 3.248zM1.677 6.462v4.003c6.988 0 12.65 5.662 12.65 12.65h4.003c0-9.186-7.467-16.653-16.653-16.653zM1.677.84v4.002C11.406 4.842 19.158 12.594 19.158 22.323H23.16C23.161 10.97 14.03-.161 1.677.84z"/>
+            </svg>
+            RSS Feed
+          </a>
+        </div>
+      </header>
+
+      {posts.length === 0 ? (
+        <!-- Empty State -->
+        <section class="text-center py-16" aria-labelledby="empty-state-heading">
+          <div class="max-w-md mx-auto">
+            <div class="w-24 h-24 mx-auto mb-6 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
+              <svg 
+                class="w-12 h-12 text-gray-400" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h2 id="empty-state-heading" class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+              No posts yet
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Check back soon for new articles and insights!
+            </p>
+          </div>
+        </section>
+      ) : (
+        <!-- Blog Posts Grid -->
+        <section aria-labelledby="blog-posts-heading">
+          <h2 id="blog-posts-heading" class="sr-only">All blog posts</h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+            {posts.map((post) => (
+              <article 
+                class="group"
+                role="article"
+                aria-labelledby={`post-title-${post.slug}`}
+              >
+                <a 
+                  href={`/blog/${post.slug}`}
+                  class="block bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg dark:shadow-gray-900/20 transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-[320px] flex flex-col"
+                  aria-describedby={`post-excerpt-${post.slug}`}
+                >
+                  <!-- Featured Image -->
+                  <div class="aspect-video bg-gray-200 dark:bg-gray-700 overflow-hidden flex-shrink-0">
+                    <img 
+                      src={post.data.image} 
+                      alt={post.data.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  
+                  <!-- Card Content -->
+                  <div class="p-5 flex-1 flex flex-col">
+                    <!-- Title -->
+                    <h3 
+                      id={`post-title-${post.slug}`}
+                      class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-2"
+                    >
+                      {post.data.title}
+                    </h3>
+                    
+                    <!-- Subtitle -->
+                    <p 
+                      id={`post-excerpt-${post.slug}`}
+                      class="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3 leading-relaxed flex-1"
+                    >
+                      {post.data.subtitle}
+                    </p>
+                    
+                    <!-- Meta Information -->
+                    <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mt-auto">
+                      <time 
+                        datetime={post.data.date.toISOString()}
+                        class="font-medium"
+                        aria-label={`Published on ${post.data.date.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}`}
+                      >
+                        {post.data.date.toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </time>
+                      
+                      {post.data.tags && post.data.tags.length > 0 && (
+                        <span 
+                          class="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-xs font-medium"
+                          aria-label={`Tagged as ${post.data.tags[0]}`}
+                        >
+                          {post.data.tags[0]}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  <!-- Read More Indicator -->
+                  <div class="px-5 pb-4">
+                    <div class="flex items-center text-blue-600 dark:text-blue-400 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <span>Read more</span>
+                      <svg 
+                        class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+        
+        <!-- Load More Section (for future pagination) -->
+        {posts.length >= 12 && (
+          <section class="text-center mt-12" aria-labelledby="load-more-heading">
+            <h2 id="load-more-heading" class="sr-only">Load more posts</h2>
+            <button 
+              class="px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-[44px]"
+              aria-label="Load more blog posts"
+            >
+              Load More Posts
+            </button>
+          </section>
+        )}
+      )}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Ensure adequate touch targets for mobile */
+  @media (max-width: 768px) {
+    .group a {
+      min-height: 280px;
+    }
+    
+    .group .p-5 {
+      padding: 1.25rem;
+    }
+  }
+
+  /* Focus improvements for better accessibility */
+  .group a:focus {
+    transform: translateY(-2px);
+  }
+
+  /* Respect motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .group a,
+    .group img,
+    .group svg {
+      transition: none;
+    }
+    
+    .group a:hover {
+      transform: none;
+    }
+    
+    .group:hover img {
+      transform: none;
+    }
+  }
+</style> 
