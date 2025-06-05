@@ -15,7 +15,8 @@ export default defineConfig({
   ],
   output: 'static',
   site: 'https://yourusername.github.io', // Update this with your actual GitHub Pages URL
-  base: '/about', // Update this with your repository name if needed
+  // Uncomment the next line if you need to deploy to a subdirectory like /about
+  // base: '/about',
   build: {
     assets: 'assets',
     // Enable inlining of small assets for better performance
