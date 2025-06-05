@@ -7,7 +7,7 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = "Developer portfolio and blog" } = Astro.props;
+const { title, description = "Ignacio Fernández Álvarez - Fullstack Developer" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ const { title, description = "Developer portfolio and blog" } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <meta name="generator" content={Astro.generator} />
     
     <!-- PWA Manifest -->
@@ -25,14 +25,14 @@ const { title, description = "Developer portfolio and blog" } = Astro.props;
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="developer, portfolio, blog, web development, react, typescript, javascript" />
-    <meta name="author" content="Developer Portfolio" />
+    <meta name="keywords" content="ignacio fernández álvarez, fullstack developer, developer, portfolio, web development, react, typescript, javascript" />
+    <meta name="author" content="Ignacio Fernández Álvarez" />
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Developer Portfolio" />
+    <meta property="og:site_name" content="Ignacio Fernández Álvarez - Portfolio" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -43,9 +43,10 @@ const { title, description = "Developer portfolio and blog" } = Astro.props;
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
-    <!-- Preload fonts if using web fonts -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- Google Fonts - Merriweather -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     
     <!-- Prevent FOUC with theme initialization -->
     <script is:inline>
@@ -57,12 +58,14 @@ const { title, description = "Developer portfolio and blog" } = Astro.props;
         
         if (theme === 'dark') {
           document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
         }
       })();
     </script>
   </head>
   
-  <body class="bg-background text-foreground antialiased">
+  <body class="bg-background text-foreground antialiased min-h-screen overflow-x-hidden">
     <!-- Skip to main content link for accessibility -->
     <a 
       href="#main-content" 
@@ -71,136 +74,18 @@ const { title, description = "Developer portfolio and blog" } = Astro.props;
       Skip to main content
     </a>
 
-    <!-- Header -->
-    <header 
-      class="sticky top-0 z-40 bg-background/80 backdrop-blur-sm border-b border-border"
-      role="banner"
-    >
-      <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <!-- Logo/Brand -->
-          <div class="flex-shrink-0">
-            <a 
-              href="/" 
-              class="text-xl font-bold text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-1"
-              aria-label="Go to homepage"
-            >
-              Portfolio
-            </a>
-          </div>
-          
-          <!-- Navigation -->
-          <nav class="hidden md:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
-            <a 
-              href="/" 
-              class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1"
-              aria-label="Go to homepage"
-            >
-              Home
-            </a>
-            <a 
-              href="/blog" 
-              class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-2 py-1"
-              aria-label="Go to blog"
-            >
-              Blog
-            </a>
-          </nav>
-
-          <!-- Mobile Navigation Button -->
-          <button
-            type="button"
-            class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            id="mobile-menu-button"
-          >
-            <span class="sr-only">Open main menu</span>
-            <!-- Hamburger icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-          
-          <!-- Theme Toggle -->
-          <div class="flex items-center ml-4">
-            <ThemeToggle client:load />
-          </div>
-        </div>
-
-        <!-- Mobile Navigation Menu -->
-        <div class="md:hidden hidden" id="mobile-menu">
-          <div class="px-2 pt-2 pb-3 space-y-1 border-t border-border">
-            <a 
-              href="/" 
-              class="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              Home
-            </a>
-            <a 
-              href="/blog" 
-              class="block px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              Blog
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
+    <!-- Theme Toggle - Better mobile positioning -->
+    <div class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 safe-area-inset-top">
+      <ThemeToggle client:load />
+    </div>
     
     <!-- Main Content -->
-    <main class="flex-1" id="main-content" role="main">
+    <main class="min-h-screen w-full" id="main-content" role="main">
       <slot />
     </main>
-    
-    <!-- Footer -->
-    <footer class="border-t border-border bg-background" role="contentinfo">
-      <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Developer Portfolio. Built with Astro & Tailwind CSS.
-          </div>
-          <div class="flex items-center space-x-4 mt-4 md:mt-0">
-            <a 
-              href="https://github.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-1"
-              aria-label="Visit GitHub profile (opens in new window)"
-            >
-              GitHub
-            </a>
-            <a 
-              href="https://linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-md px-1"
-              aria-label="Visit LinkedIn profile (opens in new window)"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
 
-    <!-- Mobile menu toggle script -->
+    <!-- Respect user's motion preferences for smooth scrolling -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        if (mobileMenuButton && mobileMenu) {
-          mobileMenuButton.addEventListener('click', function() {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            
-            mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
-            mobileMenu.classList.toggle('hidden');
-          });
-        }
-      });
-
-      // Respect user's motion preferences for smooth scrolling
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.style.scrollBehavior = 'smooth';
       }

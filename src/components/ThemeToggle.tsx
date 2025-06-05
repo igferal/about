@@ -14,21 +14,30 @@ export function ThemeToggle() {
     
     if (savedTheme) {
       setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      applyTheme(savedTheme);
     } else {
       // Check system preference
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const systemTheme = prefersDark ? 'dark' : 'light';
       setTheme(systemTheme);
-      document.documentElement.classList.toggle('dark', systemTheme === 'dark');
+      applyTheme(systemTheme);
     }
   }, []);
+
+  const applyTheme = (newTheme: 'light' | 'dark') => {
+    const root = document.documentElement;
+    if (newTheme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  };
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    applyTheme(newTheme);
   };
 
   // Don't render anything until mounted to avoid hydration mismatch
@@ -37,7 +46,7 @@ export function ThemeToggle() {
       <Button 
         variant="ghost" 
         size="sm" 
-        className="w-9 h-9 p-0"
+        className="w-9 h-9 p-0 border border-border"
         disabled
         aria-label="Loading theme toggle"
       >
@@ -51,7 +60,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="w-9 h-9 p-0 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="w-9 h-9 p-0 border border-border hover:bg-accent hover:text-accent-foreground focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       aria-pressed={theme === 'dark'}
       title={`Currently in ${theme} mode. Click to switch to ${theme === 'light' ? 'dark' : 'light'} mode.`}
